@@ -1,0 +1,13 @@
+[
+  {
+    "name": "default",
+    "type": "mariadb",
+    "host": "172.16.123.56",
+    "port": 3306,
+    "username": "root",
+    "password": "root",
+    "database": "cli",
+    "synchronize": false,
+    "entities": ["dist/**/*.entities{.ts,.js}", "dist/**/*{.ts,.js}"]
+  }
+]

@@ -1,0 +1,471 @@
+import { Column, Entity } from "typeorm";
+
+@Entity("crtrtprsnt", { schema: "cli" })
+export class Crtrtprsnt {
+  @Column("varchar", { name: "hspt_cd", comment: "병원코드", length: 20 })
+  hsptCd: string;
+
+  @Column("varchar", {
+    name: "frst_rgst_usid",
+    comment: "최초등록사용자ID",
+    length: 20,
+  })
+  frstRgstUsid: string;
+
+  @Column("datetime", { name: "frst_rgdt", comment: "최초등록일시" })
+  frstRgdt: Date;
+
+  @Column("varchar", {
+    name: "last_updt_usid",
+    comment: "최종수정사용자ID",
+    length: 20,
+  })
+  lastUpdtUsid: string;
+
+  @Column("datetime", { name: "last_uddt", comment: "최종수정일시" })
+  lastUddt: Date;
+
+  @Column("varchar", {
+    primary: true,
+    name: "pid",
+    comment: "환자등록번호",
+    length: 20,
+  })
+  pid: string;
+
+  @Column("varchar", {
+    primary: true,
+    name: "prsc_date",
+    comment: "처방일자",
+    length: 8,
+  })
+  prscDate: string;
+
+  @Column("int", { primary: true, name: "prsc_sqno", comment: "처방순번" })
+  prscSqno: number;
+
+  @Column("varchar", {
+    name: "prsc_cd",
+    nullable: true,
+    comment: "처방코드",
+    length: 15,
+  })
+  prscCd: string | null;
+
+  @Column("varchar", {
+    name: "prsc_nm",
+    nullable: true,
+    comment: "처방명",
+    length: 300,
+  })
+  prscNm: string | null;
+
+  @Column("varchar", {
+    name: "mdcr_date",
+    nullable: true,
+    comment: "진료일자",
+    length: 8,
+  })
+  mdcrDate: string | null;
+
+  @Column("int", { name: "rcpn_sqno", comment: "접수일련번호" })
+  rcpnSqno: number;
+
+  @Column("varchar", {
+    name: "pt_dvcd",
+    nullable: true,
+    comment: "환자구분코드",
+    length: 1,
+  })
+  ptDvcd: string | null;
+
+  @Column("varchar", {
+    name: "ptaf_pt_dvcd",
+    nullable: true,
+    comment: "원무환자구분코드",
+    length: 1,
+  })
+  ptafPtDvcd: string | null;
+
+  @Column("varchar", {
+    name: "prsc_clsf_cd",
+    nullable: true,
+    comment: "처방분류코드",
+    length: 2,
+  })
+  prscClsfCd: string | null;
+
+  @Column("varchar", {
+    name: "slip_cd",
+    nullable: true,
+    comment: "SLIP코드",
+    length: 10,
+  })
+  slipCd: string | null;
+
+  @Column("varchar", {
+    name: "prsc_shpe_cd",
+    nullable: true,
+    comment: "처방형태코드",
+    length: 1,
+  })
+  prscShpeCd: string | null;
+
+  @Column("varchar", {
+    name: "prsc_kind_cd",
+    nullable: true,
+    comment: "처방종류코드",
+    length: 1,
+  })
+  prscKindCd: string | null;
+
+  @Column("varchar", {
+    name: "dc_yn",
+    nullable: true,
+    comment: "D/C여부",
+    length: 1,
+  })
+  dcYn: string | null;
+
+  @Column("varchar", {
+    name: "mddp_cd",
+    nullable: true,
+    comment: "진료과코드",
+    length: 6,
+  })
+  mddpCd: string | null;
+
+  @Column("varchar", {
+    name: "mdcr_dr_id",
+    nullable: true,
+    comment: "진료의사ID",
+    length: 20,
+  })
+  mdcrDrId: string | null;
+
+  @Column("varchar", {
+    name: "prsc_dr_id",
+    nullable: true,
+    comment: "처방의사ID",
+    length: 20,
+  })
+  prscDrId: string | null;
+
+  @Column("varchar", {
+    name: "op_date",
+    nullable: true,
+    comment: "수술일자",
+    length: 8,
+  })
+  opDate: string | null;
+
+  @Column("int", { name: "op_sqno", nullable: true, comment: "수술순번" })
+  opSqno: number | null;
+
+  @Column("varchar", {
+    name: "mdng_adtn_aply_yn",
+    nullable: true,
+    comment: "심야가산적용여부",
+    length: 1,
+  })
+  mdngAdtnAplyYn: string | null;
+
+  @Column("decimal", {
+    name: "qty",
+    nullable: true,
+    comment: "수량",
+    precision: 10,
+    scale: 3,
+  })
+  qty: string | null;
+
+  @Column("int", { name: "notm", nullable: true, comment: "횟수" })
+  notm: number | null;
+
+  @Column("varchar", {
+    name: "uncd",
+    nullable: true,
+    comment: "단위코드",
+    length: 30,
+  })
+  uncd: string | null;
+
+  @Column("varchar", {
+    name: "anst_time",
+    nullable: true,
+    comment: "마취시간",
+    length: 4,
+  })
+  anstTime: string | null;
+
+  @Column("varchar", {
+    name: "pt_insn_tycd",
+    nullable: true,
+    comment: "환자보험유형코드",
+    length: 2,
+  })
+  ptInsnTycd: string | null;
+
+  @Column("varchar", {
+    name: "prsc_pay_dvcd",
+    nullable: true,
+    comment: "처방급여구분코드",
+    length: 1,
+  })
+  prscPayDvcd: string | null;
+
+  @Column("varchar", {
+    name: "dc_drcn_dr_id",
+    nullable: true,
+    comment: "DC지시의ID",
+    length: 20,
+  })
+  dcDrcnDrId: string | null;
+
+  @Column("varchar", {
+    name: "dc_drcn_dt",
+    nullable: true,
+    comment: "DC지시일시",
+    length: 50,
+  })
+  dcDrcnDt: string | null;
+
+  @Column("varchar", {
+    name: "ward_cd",
+    nullable: true,
+    comment: "병동코드",
+    length: 6,
+  })
+  wardCd: string | null;
+
+  @Column("varchar", {
+    name: "room_cd",
+    nullable: true,
+    comment: "병실코드",
+    length: 5,
+  })
+  roomCd: string | null;
+
+  @Column("varchar", {
+    name: "prsc_cndt_dept_cd",
+    nullable: true,
+    comment: "처방실시부서코드",
+    length: 10,
+  })
+  prscCndtDeptCd: string | null;
+
+  @Column("varchar", {
+    name: "rcpt_dt",
+    nullable: true,
+    comment: "수납일시",
+    length: 50,
+  })
+  rcptDt: string | null;
+
+  @Column("varchar", {
+    name: "rcpt_stat_cd",
+    nullable: true,
+    comment: "수납상태코드",
+    length: 1,
+  })
+  rcptStatCd: string | null;
+
+  @Column("varchar", {
+    name: "rcpt_stat_cd_2",
+    nullable: true,
+    comment: "수납상태코드2",
+    length: 1,
+  })
+  rcptStatCd_2: string | null;
+
+  @Column("varchar", {
+    name: "spmn_matr",
+    nullable: true,
+    comment: "특기사항",
+    length: 250,
+  })
+  spmnMatr: string | null;
+
+  @Column("varchar", {
+    name: "prsc_edtn_cnts_1",
+    nullable: true,
+    comment: "처방편집내용1",
+    length: 300,
+  })
+  prscEdtnCnts_1: string | null;
+
+  @Column("varchar", {
+    name: "prsc_edtn_cnts_2",
+    nullable: true,
+    comment: "처방편집내용2",
+    length: 300,
+  })
+  prscEdtnCnts_2: string | null;
+
+  @Column("varchar", {
+    name: "dnfr_cd_1",
+    nullable: true,
+    comment: "치열코드1",
+    length: 10,
+  })
+  dnfrCd_1: string | null;
+
+  @Column("varchar", {
+    name: "dnfr_cd_2",
+    nullable: true,
+    comment: "치열코드2",
+    length: 10,
+  })
+  dnfrCd_2: string | null;
+
+  @Column("varchar", {
+    name: "dnfr_cd_3",
+    nullable: true,
+    comment: "치열코드3",
+    length: 10,
+  })
+  dnfrCd_3: string | null;
+
+  @Column("varchar", {
+    name: "dnfr_cd_4",
+    nullable: true,
+    comment: "치열코드4",
+    length: 10,
+  })
+  dnfrCd_4: string | null;
+
+  @Column("varchar", {
+    name: "prsc_inpt_dt",
+    nullable: true,
+    comment: "처방입력일시",
+    length: 50,
+  })
+  prscInptDt: string | null;
+
+  @Column("varchar", {
+    name: "revw_stat_cd",
+    nullable: true,
+    comment: "심사상태코드",
+    length: 1,
+  })
+  revwStatCd: string | null;
+
+  @Column("varchar", {
+    name: "prsc_spmn_matr",
+    nullable: true,
+    comment: "처방특기사항",
+    length: 200,
+  })
+  prscSpmnMatr: string | null;
+
+  @Column("varchar", {
+    name: "cndt_dt",
+    nullable: true,
+    comment: "실시일시",
+    length: 50,
+  })
+  cndtDt: string | null;
+
+  @Column("varchar", {
+    name: "cmrd_prps_cd",
+    nullable: true,
+    comment: "의무기록복사목적코드",
+    length: 2,
+  })
+  cmrdPrpsCd: string | null;
+
+  @Column("varchar", {
+    name: "cmrd_qty",
+    nullable: true,
+    comment: "의무기록복사수량",
+    length: 5,
+  })
+  cmrdQty: string | null;
+
+  @Column("varchar", {
+    name: "apnt_dt",
+    nullable: true,
+    comment: "예약일시",
+    length: 50,
+  })
+  apntDt: string | null;
+
+  @Column("int", {
+    name: "wrcn_prnt_notm",
+    nullable: true,
+    comment: "동의서출력횟수",
+  })
+  wrcnPrntNotm: number | null;
+
+  @Column("varchar", {
+    name: "mdcr_hm",
+    nullable: true,
+    comment: "진료시분",
+    length: 4,
+  })
+  mdcrHm: string | null;
+
+  @Column("varchar", {
+    name: "anst_strt_time",
+    nullable: true,
+    comment: "마취시작시간",
+    length: 50,
+  })
+  anstStrtTime: string | null;
+
+  @Column("varchar", {
+    name: "anst_end_time",
+    nullable: true,
+    comment: "마취종료시간",
+    length: 50,
+  })
+  anstEndTime: string | null;
+
+  @Column("varchar", {
+    name: "insn_tycd",
+    nullable: true,
+    comment: "보험유형코드",
+    length: 2,
+  })
+  insnTycd: string | null;
+
+  @Column("varchar", {
+    name: "type_asst_cd",
+    nullable: true,
+    comment: "유형보조코드",
+    length: 2,
+  })
+  typeAsstCd: string | null;
+
+  @Column("varchar", {
+    name: "prsc_prgr_stat_cd",
+    nullable: true,
+    comment: "처방진행상태코드",
+    length: 1,
+  })
+  prscPrgrStatCd: string | null;
+
+  @Column("varchar", {
+    name: "hsin_hsot_dvcd",
+    nullable: true,
+    comment: "원내원외구분코드",
+    length: 1,
+  })
+  hsinHsotDvcd: string | null;
+
+  @Column("varchar", {
+    name: "clam_type_clsf_cd",
+    nullable: true,
+    comment: "청구유형분류코드",
+    length: 2,
+  })
+  clamTypeClsfCd: string | null;
+
+  @Column("varchar", {
+    name: "prsc_issu_dept_cd",
+    nullable: true,
+    comment: "처방발행부서코드",
+    length: 6,
+  })
+  prscIssuDeptCd: string | null;
+}
