@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Patch, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Patch, Post, Query, Req } from '@nestjs/common';
 import { MedicalService } from './medical.service';
 
 @Controller('medical')
@@ -70,13 +70,18 @@ export class MedicalController {
   }
 
   // 약속처방 ----------------------------------------------------------------------
+  // 약속처방 목록
+  @Get('set')
+  async GetSetList(@Query() data) : Promise<any> {
+    return this.medicalService.getSetLists(data);
+  }
   // 약속처방 처방 검색 목록 불러오기
-  @Get('prs:keyword')
+  @Get('set/prs:keyword')
   async GetPrsList(@Param('keyword') keyword: string): Promise<any[]> {
     return this.medicalService.getPrsList(keyword);
   }
   // 약속처방 저장
-  @Post('prs')
+  @Post('set')
   async SaveSetList(@Body() data): Promise<any> {
     return console.log(data);
   }

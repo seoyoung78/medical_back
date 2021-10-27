@@ -204,6 +204,21 @@ export class MedicalService {
   // }
 
   // 약속처방 -----------------------------------------------------------------------------------------
+  // 약속처방 목록
+  async getSetLists(data) : Promise<any[]> {
+    const getSetLists = await this.CrsetmngmtRepository.createQueryBuilder('CRSETMNGMT')
+      .select(`
+        CRSETMNGMT.setClsf,
+        CRSETMNGMT.setNm,
+        CRSETMNGMT.setCd
+      `)
+      .where(`CRSETMNGMT.inpsUsid = :id`, { id : data.id })
+      .andWhere(`CRSETMNGMT.setNm like :keyword`, {keyword: '%' + data.keyword + '%'})
+      .getRawMany();
+
+    return getSetLists;
+  }
+  
   // 검색한 처방목록 불러오기
   async getPrsList(keyword : string) : Promise<any[]> {
     const getPrsList = await this.CrprsccdmRepository.createQueryBuilder('CRPRSCCDMT')
