@@ -33,7 +33,7 @@ export class Crsetmngmt {
   })
   lastUddt: Date;
 
-  @Column("varchar", { name: "inps_usid", comment: "입력자ID", length: 2 })
+  @Column("varchar", { name: "inps_usid", comment: "입력자ID", length: 20 })
   inpsUsid: string;
 
   @Column("varchar", {
@@ -43,6 +43,13 @@ export class Crsetmngmt {
   })
   setClsf: string;
 
+  @Column("varchar", {
+    name: "set_clsf_cd",
+    comment: "약속처방 분류 코드",
+    length: 100,
+  })
+  setClsfCd: string;
+
   @Column("varchar", { name: "set_nm", comment: "약속 명칭", length: 100 })
   setNm: string;
 
@@ -51,6 +58,7 @@ export class Crsetmngmt {
     name: "set_cd",
     comment: "약속처방 코드(seq)",
     length: 100,
+    default: () => "'nextval(`cli`.`seq_cl_set_cd`)'",
   })
   setCd: string;
 }

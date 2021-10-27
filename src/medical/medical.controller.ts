@@ -75,6 +75,11 @@ export class MedicalController {
   async GetSetList(@Query() data) : Promise<any> {
     return this.medicalService.getSetLists(data);
   }
+  // 약속처방 분류 목록
+  @Get('set/clsf')
+  async GetAllSetClsf() : Promise<any> {
+    return this.medicalService.getAllSetClsf();
+  };
   // 약속처방 처방 검색 목록 불러오기
   @Get('set/prs:keyword')
   async GetPrsList(@Param('keyword') keyword: string): Promise<any[]> {
@@ -83,7 +88,7 @@ export class MedicalController {
   // 약속처방 저장
   @Post('set')
   async SaveSetList(@Body() data): Promise<any> {
-    return console.log(data);
+    return this.medicalService.saveSetList(data);
   }
 
   // ----------------------------------------------------------------------

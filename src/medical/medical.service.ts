@@ -46,11 +46,6 @@ export class MedicalService {
   async searchDList(keyword : string) : Promise<any[]> {
     const getDList = await this.CrkcddgcmtRepository.createQueryBuilder('CRKCDDGCMT')
       .select(`
-        CRKCDDGCMT.hsptCd, 
-        CRKCDDGCMT.frstRgstUsid,
-        CRKCDDGCMT.frstRgdt,
-        CRKCDDGCMT.lastUpdtUsid,
-        CRKCDDGCMT.lastUddt,
         CRKCDDGCMT.dgnsCd,
         CRKCDDGCMT.dgnsEnm,
         CRKCDDGCMT.dgnsHnm`
@@ -209,6 +204,7 @@ export class MedicalService {
     const getSetLists = await this.CrsetmngmtRepository.createQueryBuilder('CRSETMNGMT')
       .select(`
         CRSETMNGMT.setClsf,
+        CRSETMNGMT.setClsfCd,
         CRSETMNGMT.setNm,
         CRSETMNGMT.setCd
       `)
@@ -217,17 +213,69 @@ export class MedicalService {
       .getRawMany();
 
     return getSetLists;
-  }
-  
+  }  
   // 검색한 처방목록 불러오기
   async getPrsList(keyword : string) : Promise<any[]> {
     const getPrsList = await this.CrprsccdmRepository.createQueryBuilder('CRPRSCCDMT')
-      .select(`*`,)
+      .select(`
+        CRPRSCCDMT.prscCd,
+        CRPRSCCDMT.prscNm
+      `,)
       .where(`CRPRSCCDMT.prscCd like :code`, {code: '%' + keyword + '%'})
       .orWhere(`CRPRSCCDMT.prscNm like :name`, {name: '%' + keyword + '%'})
+      .andWhere(`CRPRSCCDMT.prscPsblYn = 'Y'`)
       .getRawMany();
 
     return getPrsList;
+  }
+  // 약속처방 분류
+  async getAllSetClsf() : Promise<any[]> {
+    const getAllSetClsf = await this.CrsetmngmtRepository.createQueryBuilder('CRSETMNGMT')
+      .select(`CRSETMNGMT.setNm`,)
+      // .orderBy(`CRSETMNGMT.setCd`)
+      .distinct(true)
+      .getRawMany();
+
+    return getAllSetClsf;
+  }
+  // 약속처방 저장
+  async saveSetList(data) : Promise<any> {
+    // 약속처방 마스터
+    const set = data.set
+    console.log(set);
+    console.log(data.dig);
+    console.log(data.prs.length);
+    await this.CrsetmngmtRepository.createQueryBuilder('CRSETSMNGMT')
+      .insert()
+      .into(Crsetmngmt)
+      .values({
+        hsptCd: '10260084', 
+        frstRgstUsid: 'ADMIN',
+        lastUpdtUsid: 'ADMIN',
+        inpsUsid: 'doctor1',
+        setClsf: set.set_clsf,
+        setClsfCd: set.set_clsf_cd,
+        setNm: set.set_nm
+      })
+      .execute();
+
+    // // 진단 상세
+    // await this.CrsetdigdtRepository.createQueryBuilder('CRSETDIGDT')
+    //   .insert()
+    //   .into(Crsetdigdt)
+    //   .values({
+
+    //   })
+    //   .execute();
+
+    // // 처방 상세
+    // await this.CrsetprsdtRepository.createQueryBuilder('CRSETPRSDT')
+    //   .insert()
+    //   .into(Crsetprsdt)
+    //   .values({
+
+    //   })
+    //   .execute();
   }
   
   // -----------------------------------------------------------------------------------------
