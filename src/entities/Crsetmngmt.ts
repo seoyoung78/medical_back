@@ -58,7 +58,7 @@ export class Crsetmngmt {
     name: "set_cd",
     comment: "약속처방 코드(seq)",
     length: 100,
-    default: () => "'nextval(`cli`.`seq_cl_set_cd`)'",
+    // default: () => "'nextval(`cli`.`seq_cl_set_cd`)'",
   })
   setCd: string;
 }

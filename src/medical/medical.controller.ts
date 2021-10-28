@@ -90,6 +90,11 @@ export class MedicalController {
   async SaveSetList(@Body() data): Promise<any> {
     return this.medicalService.saveSetList(data);
   }
+  // 약속처방 수정
+  @Patch('set')
+  async UpdateSetList(@Body() data) : Promise<any> {
+    return this.medicalService.updateSetList(data);
+  }
 
   // ----------------------------------------------------------------------
   // 환자별 검사 처방 목록 불러오기

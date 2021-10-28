@@ -223,7 +223,7 @@ export class MedicalService {
       `,)
       .where(`CRPRSCCDMT.prscCd like :code`, {code: '%' + keyword + '%'})
       .orWhere(`CRPRSCCDMT.prscNm like :name`, {name: '%' + keyword + '%'})
-      .andWhere(`CRPRSCCDMT.prscPsblYn = 'Y'`)
+      // .andWhere(`CRPRSCCDMT.prscPsblYn = 'Y'`)
       .getRawMany();
 
     return getPrsList;
@@ -238,13 +238,15 @@ export class MedicalService {
 
     return getAllSetClsf;
   }
-  // 약속처방 저장
+  // 약속처방 생성
   async saveSetList(data) : Promise<any> {
     // 약속처방 마스터
-    const set = data.set
+    const set = data.set;
+    const dig = data.dig;
+    const prs = data.prs;
     console.log(set);
     console.log(data.dig);
-    console.log(data.prs.length);
+    console.log(data.prs);
     await this.CrsetmngmtRepository.createQueryBuilder('CRSETSMNGMT')
       .insert()
       .into(Crsetmngmt)
@@ -255,27 +257,60 @@ export class MedicalService {
         inpsUsid: 'doctor1',
         setClsf: set.set_clsf,
         setClsfCd: set.set_clsf_cd,
-        setNm: set.set_nm
+        setNm: set.set_nm,
+        setCd: '10'        
       })
       .execute();
 
-    // // 진단 상세
-    // await this.CrsetdigdtRepository.createQueryBuilder('CRSETDIGDT')
-    //   .insert()
-    //   .into(Crsetdigdt)
-    //   .values({
+    // 진단 상세
+    await this.CrsetdigdtRepository.createQueryBuilder('CRSETDIGDT')
+      .insert()
+      .into(Crsetdigdt)
+      .values({
+        hsptCd: '10260084', 
+        frstRgstUsid: 'ADMIN',
+        lastUpdtUsid: 'ADMIN',
+        dgnsCd: dig.dgns_cd,
+        dgnsNm: dig.dgns_hnm,
+        setCd: '10',
+        sqno: '1'
+      })
+      .execute();
 
-    //   })
-    //   .execute();
+    // 처방 상세
+    await this.CrsetprsdtRepository.createQueryBuilder('CRSETPRSDT')
+      .insert()
+      .into(Crsetprsdt)
+      .values({
+        hsptCd: '10260084', 
+        frstRgstUsid: 'ADMIN',
+        lastUpdtUsid: 'ADMIN',
+        prscCd: prs.prs_cd,
+        prscNm: prs.prs_nm,
+        setCd: '10',
+        sqno: '1'
+      })
+      .execute();
+  }
+  // 약속 처방 수정
+  async updateSetList(data) : Promise<any> {
+    const set = data.set;
+    const dig = data.dig;
+    const prs = data.prs;
 
-    // // 처방 상세
-    // await this.CrsetprsdtRepository.createQueryBuilder('CRSETPRSDT')
-    //   .insert()
-    //   .into(Crsetprsdt)
-    //   .values({
+    console.log(data);
 
-    //   })
-    //   .execute();
+    // 약속처방 수정
+    await this.CrsetmngmtRepository.createQueryBuilder('CRSETMNGMT')
+      .update(Crsetmngmt)
+      .set({
+        lastUddt: new Date(),
+        setClsf : set.set_clsf,
+        setClsfCd : set.set_clsf_cd,
+        setNm: set.set_nm
+      })
+      .where(`setCd = :cd`, {cd: set.set_cd})
+      .execute();
   }
   
   // -----------------------------------------------------------------------------------------
