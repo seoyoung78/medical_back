@@ -277,4 +277,36 @@ export class Crbasprsnt {
     scale: 2,
   })
   clclSugaAmt: string | null;
+
+  @Column("varchar", {
+    name: "prsc_memo",
+    nullable: true,
+    comment: "메모",
+    length: 1000,
+  })
+  prscMemo: string | null;
+
+  @Column("varchar", {
+    name: "jx999",
+    nullable: true,
+    comment: "JX999",
+    length: 1000,
+  })
+  jx999: string | null;
+
+  @Column("varchar", {
+    name: "dc_resn",
+    nullable: true,
+    comment: "DC 사유",
+    length: 1000,
+  })
+  dcResn: string | null;
+
+  @Column("varchar", {
+    name: "dc_resn_cd",
+    nullable: true,
+    comment: "DC 사유 코드",
+    length: 1,
+  })
+  dcResnCd: string | null;
 }

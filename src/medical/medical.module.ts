@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Cbotrcinnt } from '../entities/Cbotrcinnt';
 import { Cbptbainmt } from '../entities/Cbptbainmt';
+import { Crbasprsnt } from '../entities/Crbasprsnt';
 import { Crdrinprnt } from '../entities/Crdrinprnt';
 import { Crexmprsnt } from '../entities/Crexmprsnt';
 import { Crkcddgcmt } from '../entities/Crkcddgcmt';
@@ -20,7 +21,8 @@ import { MedicalService } from './medical.service';
                                       Crexmprsnt, Crslipclmt, Czcomcodmt, 
                                       Cbotrcinnt, Crdrinprnt, Crsetmngmt,
                                       Crsetdigdt, Crsetprsdt, Crptdgnsnt,
-                                      Crsetmngmt, Crsetprsdt, Crsetdigdt,])],
+                                      Crsetmngmt, Crsetprsdt, Crsetdigdt,
+                                      Crbasprsnt, Crdrinprnt, ])],
   controllers: [MedicalController],
   providers: [MedicalService]
 })

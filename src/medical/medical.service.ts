@@ -219,7 +219,10 @@ export class MedicalService {
     const getPrsList = await this.CrprsccdmRepository.createQueryBuilder('CRPRSCCDMT')
       .select(`
         CRPRSCCDMT.prscCd,
-        CRPRSCCDMT.prscNm
+        CRPRSCCDMT.prscNm,
+        CRPRSCCDMT.iotmCd,
+        CRPRSCCDMT.drugInjcDvsn,
+        CRPRSCCDMT.spcmCd_1
       `,)
       .where(`CRPRSCCDMT.prscCd like :code`, {code: '%' + keyword + '%'})
       .orWhere(`CRPRSCCDMT.prscNm like :name`, {name: '%' + keyword + '%'})
