@@ -269,30 +269,34 @@ export class MedicalService {
     await this.CrsetdigdtRepository.createQueryBuilder('CRSETDIGDT')
       .insert()
       .into(Crsetdigdt)
-      .values({
+      .values([{
         hsptCd: '10260084', 
+        frstRgdt: new Date(),
         frstRgstUsid: 'ADMIN',
+        lastUddt: new Date(),
         lastUpdtUsid: 'ADMIN',
         dgnsCd: dig.dgns_cd,
         dgnsNm: dig.dgns_hnm,
         setCd: '10',
         sqno: '1'
-      })
+      }])
       .execute();
 
     // 처방 상세
     await this.CrsetprsdtRepository.createQueryBuilder('CRSETPRSDT')
       .insert()
       .into(Crsetprsdt)
-      .values({
+      .values([{
         hsptCd: '10260084', 
         frstRgstUsid: 'ADMIN',
+        frstRgdt: new Date(),
         lastUpdtUsid: 'ADMIN',
+        lastUddt: new Date(),
         prscCd: prs.prs_cd,
         prscNm: prs.prs_nm,
         setCd: '10',
         sqno: '1'
-      })
+      }])
       .execute();
   }
   // 약속 처방 수정
