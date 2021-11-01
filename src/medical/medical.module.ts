@@ -21,8 +21,7 @@ import { MedicalService } from './medical.service';
                                       Crexmprsnt, Crslipclmt, Czcomcodmt, 
                                       Cbotrcinnt, Crdrinprnt, Crsetmngmt,
                                       Crsetdigdt, Crsetprsdt, Crptdgnsnt,
-                                      Crsetmngmt, Crsetprsdt, Crsetdigdt,
-                                      Crbasprsnt, Crdrinprnt, ])],
+                                      Crbasprsnt, ])],
   controllers: [MedicalController],
   providers: [MedicalService]
 })
