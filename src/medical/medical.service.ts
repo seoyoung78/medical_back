@@ -108,8 +108,6 @@ export class MedicalService {
         CBPTBAINMT.pstlNo,
         CBPTBAINMT.bascAddr,
         CBPTBAINMT.detlAddr,
-        CBPTBAINMT.mdcrMemo,
-        CBPTBAINMT.rcpnMemo,
         CBPTBAINMT.vipPtYn,
         CBPTBAINMT.cncnPtYn,
         CBPTBAINMT.privPtYn,
